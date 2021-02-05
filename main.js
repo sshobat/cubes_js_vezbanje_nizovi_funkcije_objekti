@@ -190,7 +190,7 @@ var someData = {
 		}
 	}
 };
-// console.log(someData);
+
 someData.checkProperty();
 
 // BONUS:
@@ -199,5 +199,33 @@ someData.checkProperty();
 
 //SOLUTION
 
-someData.name = 'Peter';
-console.log(someData);
+var someData = {
+	name: "Peter",
+	lastName: "Dinklage",
+	status: "married",
+	checkProperty: function() {
+
+		console.log(this);
+
+		if(this.hasOwnProperty('name')) {
+
+			this.secondMethod = function() {
+
+				this.oldNameTemp = this.name;
+
+				delete this.name;
+				console.log(this);
+				
+				this.thirdMethod = function() {
+					this.name = this.oldNameTemp;
+					delete this.oldNameTemp;
+					console.log(this);	
+				}
+				this.thirdMethod();
+			}
+			this.secondMethod();
+		}
+	}
+};
+
+someData.checkProperty();
